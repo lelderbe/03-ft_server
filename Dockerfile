@@ -1,16 +1,41 @@
 # Comment
 FROM debian:buster
 
+ENV TZ Europe/Moscow
+
+EXPOSE 80/tcp
+
 RUN apt update && \
 	apt upgrade && \
 	apt install -y wget && \
 	apt install -y nginx && \
-	apt install -y php-cgi php && \
-	apt install -y default-mysql-server
+	apt install -y default-mysql-server && \
+#	apt install -y php-cgi php php-mysql php-fpm && \
+	apt install -y php7.3 php7.3-fpm php7.3-mysql php-common php7.3-cli php7.3-common php7.3-json php7.3-opcache php7.3-readline && \
+	apt install -y php-mbstring php-zip php-gd php-curl php-json php-gettext php-xml php-phpseclib php-intl php-soap php-xmlrpc && \
+	apt install -y vim && \
+#	mkdir -p /usr/share/phpmyadmin/tmp && \
+	mkdir -p /usr/share/phpmyadmin && \
+	mkdir /etc/nginx/templates && \
+	wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-languages.tar.gz && \
+	tar xvf phpMyAdmin-5.0.4-all-languages.tar.gz --strip-components=1 -C /usr/share/phpmyadmin && \
+	rm phpMyAdmin-5.0.4-all-languages.tar.gz && \
+	rm -rf /usr/share/phpmyadmin/setup && \
+	ls
 
-ENV TZ Europe/Moscow
+COPY ./srcs /
 
-#RUN wget http://repo.mysql.com/mysql-apt-config_0.8.13-1_all.deb
+RUN	service mysql start && \
+	mysql -u root < /usr/share/phpmyadmin/sql/create_tables.sql && \
+	apt install -y wordpress && \
+#	ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/ && \
+	mysql -u root < /phpmyadmin.sql && \
+	mysql -u root < /wordpress.sql && \
+	rm /phpmyadmin.sql && \
+	rm /wordpress.sql && \
+	ls
 
-CMD service nginx start && service mysql start && tail -f /dev/null
-
+CMD	service nginx start && \
+	service mysql start && \
+	service php7.3-fpm start && \
+	tail -f /dev/null
