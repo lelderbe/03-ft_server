@@ -21,6 +21,7 @@
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
+	#return 301 https://$host$request_uri;
 
 	# SSL configuration
 	#
@@ -52,7 +53,6 @@ server {
 
 	location / {
 		autoindex on;
-		#autoindex off;
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
 		try_files $uri $uri/ =404;
