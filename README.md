@@ -20,3 +20,31 @@
 
 	./autoindex.sh
 
+**stop container**
+
+	docker stop www
+
+**remove image**
+
+	docker rmi www
+
+**remove volume**
+
+	docker volume rm www-db
+
+**show info**
+
+	docker version
+	docker images
+	docker volume ls
+	docker ps -a
+
+**clear docker cache**
+
+	docker builder prune
+
+**misc**
+
+	docker exec -it $(docker ps -qa) bash
+	docker ps -a && docker stop $(docker ps -qa)
+
