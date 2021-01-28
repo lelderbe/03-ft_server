@@ -1,4 +1,15 @@
-# Comment
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Dockerfile                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/01/28 14:21:15 by lelderbe          #+#    #+#              #
+#    Updated: 2021/01/28 14:21:30 by lelderbe         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 FROM debian:buster
 
 ENV TZ Europe/Moscow
@@ -11,8 +22,8 @@ RUN apt update && \
 	apt install -y wget && \
 	apt install -y nginx && \
 	apt install -y default-mysql-server && \
-#	apt install -y php-cgi php php-mysql php-fpm && \
-	apt install -y php7.3 php7.3-fpm php7.3-mysql php-common php7.3-cli php7.3-common php7.3-json php7.3-opcache php7.3-readline && \
+	apt install -y php7.3 php7.3-fpm php7.3-mysql php7.3-cli php7.3-common php7.3-json php7.3-opcache php7.3-readline && \
+	apt install -y php7.3-pdo php7.3-zip php7.3-gd php7.3-mbstring php7.3-curl php7.3-xml php7.3-bcmath && \
 	apt install -y php-mbstring php-zip php-gd php-curl php-json php-gettext php-xml php-phpseclib php-intl php-soap php-xmlrpc && \
 	apt install -y wordpress && \
 	apt install -y vim && \
