@@ -12,17 +12,18 @@
 
 	docker run --rm -d --name www -p 80:80 -p 443:443 -v www-db:/var/lib/mysql www
 
-**log in to container**
+**log into container**
 
 	docker exec -it www bash
 
 **flip autoindex on/off**
 
-	./autoindex.sh
+	docker exec www /autoindex.sh
 
-**stop container**
+**stop/start container**
 
 	docker stop www
+	docker start www
 
 **remove container/image/volume**
 
@@ -43,7 +44,6 @@
 
 **misc**
 
-	docker exec www /autoindex.sh
 	docker exec -it $(docker ps -qa) bash
 	docker ps -a && docker stop $(docker ps -qa)
 
