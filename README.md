@@ -43,6 +43,7 @@
 
 **misc**
 
+	docker exec www /autoindex.sh
 	docker exec -it $(docker ps -qa) bash
 	docker ps -a && docker stop $(docker ps -qa)
 
