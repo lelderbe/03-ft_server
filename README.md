@@ -24,12 +24,10 @@
 
 	docker stop www
 
-**remove image**
+**remove container/image/volume**
 
+	docker rm www
 	docker rmi www
-
-**remove volume**
-
 	docker volume rm www-db
 
 **show info**
