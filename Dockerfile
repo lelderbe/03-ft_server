@@ -7,7 +7,7 @@ EXPOSE 80/tcp
 EXPOSE 443/tcp
 
 RUN apt update && \
-	apt upgrade && \
+	apt upgrade -y && \
 	apt install -y wget && \
 	apt install -y nginx && \
 	apt install -y default-mysql-server && \
