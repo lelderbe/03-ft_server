@@ -11,6 +11,7 @@
 **run container**
 
 	docker run --rm -d --name www -p 80:80 -p 443:443 -v www-db:/var/lib/mysql www
+	docker run --rm -d --name www -p 80:80 -p 443:443 -v /var/lib/mysql www
 
 **log into container**
 
