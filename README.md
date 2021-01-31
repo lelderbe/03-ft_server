@@ -1,25 +1,32 @@
-# ft_server
+# FT_SERVER
+
+This is example of LEMP installation on debian buster.
+Nginx web server + services: WordPress website, phpMyAdmin and MySQL.
+
+## Installation
 
 **build image**
 
 	docker build -t www .
 
-**build volume for mysql db**
+**build volume for mysql db (or use anonymous volume)**
 
 	docker volume create www-db
 
+## Usage
+
 **run container**
 
-	docker run --rm -d --name www -p 80:80 -p 443:443 -v www-db:/var/lib/mysql www
-	docker run --rm -d --name www -p 80:80 -p 443:443 -v /var/lib/mysql www
-
-**log into container**
-
-	docker exec -it www bash
+	docker run -d --name www -p 80:80 -p 443:443 -v www-db:/var/lib/mysql www
+	docker run -d --name www -p 80:80 -p 443:443 -v /var/lib/mysql www
 
 **flip autoindex on/off**
 
 	docker exec www /autoindex.sh
+
+**log into container**
+
+	docker exec -it www bash
 
 **stop/start container**
 
