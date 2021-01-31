@@ -6,7 +6,7 @@
 #    By: lelderbe <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/31 11:09:56 by lelderbe          #+#    #+#              #
-#    Updated: 2021/01/31 11:44:26 by lelderbe         ###   ########.fr        #
+#    Updated: 2021/01/31 12:53:12 by lelderbe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,17 +27,12 @@ RUN apt update && \
 	apt install -y vim && \
 	mkdir -p /usr/share/phpmyadmin/tmp && \
 	chmod 777 /usr/share/phpmyadmin/tmp && \
-#	mkdir /etc/nginx/templates && \
 	mkdir /var/www/html/phpmyadmin && \
 	mkdir /var/www/html/wordpress && \
 	wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-languages.tar.gz && \
 	tar xvf phpMyAdmin-5.0.4-all-languages.tar.gz --strip-components=1 -C /usr/share/phpmyadmin && \
 	rm phpMyAdmin-5.0.4-all-languages.tar.gz && \
 	rm -rf /usr/share/phpmyadmin/setup && \
-	mkdir -p /var/www/html/example/test1 && \
-	mkdir -p /var/www/html/example/test2 && \
-	echo 'this is file1' > /var/www/html/example/file1.txt && \
-	echo 'file2' > /var/www/html/example/file2.txt && \
 	echo
 
 COPY ./srcs /
@@ -50,11 +45,8 @@ RUN	service mysql start && \
 	rm /wordpress.sql && \
 	openssl req -x509 -nodes -days 365 -subj "/C=RU/ST=RUSSIA/L=Moscow/O=21School/OU=students/CN=localhost" -newkey rsa:2048 \
 		-keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt && \
-##	openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 	chmod 777 /autoindex.sh && \
 	echo
-
-#COPY ./srcs /
 
 CMD	\
 	service nginx start && \
